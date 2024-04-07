@@ -6,7 +6,7 @@ const app = express(); // Creating an express object
 const port = 8000; // Setting a port for this application
 
 let sensorData = []; // Array to store sensor data
-//const MAX_SENSOR_DATA = 26; 
+const MAX_SENSOR_DATA = 30; 
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
@@ -40,9 +40,9 @@ app.post('/sensor-data', function (req, res) {
     // Add received data to sensorData array
     sensorData.push(jsonData);
 
-   // if (sensorData.length > MAX_SENSOR_DATA) {
-       // sensorData = [];
-    //}
+    if (sensorData.length > MAX_SENSOR_DATA) {
+        sensorData = [];
+    }
 
     // Send the updated sensor data back to the client as JSON
     res.json(sensorData);
